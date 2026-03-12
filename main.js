@@ -419,13 +419,18 @@ function renderRecipes(aiResponse) {
                                 <h4 class="brand-font" style="font-size: 0.95rem; color: white; margin-bottom: 4px;">
                                     ${aiRecipe.title} ${isCompleted ? ' <span style="color: #10b981;">✅</span>' : ''}
                                 </h4>
-                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-                                    <span style="font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; background: ${calorieColor}20; color: ${calorieColor}; border: 1px solid ${calorieColor}40; font-weight: 700; text-transform: uppercase;">
-                                        ${aiRecipe.calorieBand || 'lite'} • ${aiRecipe.calories || 0} kcal
+                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+                                    <span style="font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; background: ${calorieColor}15; color: ${calorieColor}; border: 1px solid ${calorieColor}30; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;">
+                                        🔥 ${aiRecipe.calories || 0} kcal
                                     </span>
-                                    <span style="font-size: 0.6rem; padding: 2px 6px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600;">
-                                        📊 ${aiRecipe.difficulty || 'Media'} • ⏱️ ${aiRecipe.prepTime || '20 min'}
-                                    </span>
+                                    <div style="display: flex; gap: 4px;">
+                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <span style="opacity: 0.7;">📊</span> ${aiRecipe.difficulty || 'Media'}
+                                        </span>
+                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <span style="opacity: 0.7;">⏱️</span> ${aiRecipe.prepTime || '20 min'}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <p style="font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.4;">${aiRecipe.description}</p>
