@@ -35,6 +35,11 @@
                 <button id="reset-btn" class="btn glass"
                     style="width: 42px; height: 42px; border-radius: 50%; padding: 0; font-size: 1.2rem; background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2);"
                     title="Azzera dati">↺</button>
+                <div id="badges-btn" class="glass"
+                    style="width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2);"
+                    title="Bacheca Badge">
+                    🏆
+                </div>
                 <div id="profile-btn" class="glass"
                     style="width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
                     👤
@@ -402,7 +407,28 @@
         }
     </style>
 
-    <script src="main.js?v=20"></script>
+    <!-- Badges Modal -->
+    <div id="badges-modal" class="modal-overlay" style="display: none;">
+        <div class="glass modal-content" style="max-width: 500px; width: 95%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 class="brand-font" style="font-size: 1.3rem;">Bacheca Trofei 🏆</h3>
+                <button id="close-badges" class="btn glass"
+                    style="width: 32px; height: 32px; border-radius: 50%; padding: 0;">✕</button>
+            </div>
+
+            <div id="badges-grid"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 4px;">
+                <!-- Badges will be injected here by JS -->
+            </div>
+
+            <div
+                style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--glass-border); text-align: center;">
+                <p class="text-muted" style="font-size: 0.75rem;">Sblocca i badge risparmiando cibo e CO₂!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js?v=21"></script>
 </body>
 
 </html>

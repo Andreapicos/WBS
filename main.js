@@ -100,6 +100,33 @@ const stepsTitleEl = document.getElementById('steps-title');
 const stepsContentEl = document.getElementById('steps-content');
 const closeStepsBtn = document.getElementById('close-steps');
 
+// Badges Modal
+const badgesBtn = document.getElementById('badges-btn');
+const badgesModal = document.getElementById('badges-modal');
+const closeBadgesBtn = document.getElementById('close-badges');
+const badgesGrid = document.getElementById('badges-grid');
+
+const badges = [
+    { id: 'save1', icon: '🌱', name: 'Risparmiatore Junior', desc: 'Risparmia i primi €5', goal: 5, type: 'savings' },
+    { id: 'save2', icon: '💰', name: 'Risparmiatore Senior', desc: 'Risparmia €25', goal: 25, type: 'savings' },
+    { id: 'save3', icon: '🏦', name: 'Risparmiatore Pro', desc: 'Risparmia €100', goal: 100, type: 'savings' },
+    { id: 'save4', icon: '🐋', name: 'Balena del Risparmio', desc: 'Risparmia €250', goal: 250, type: 'savings' },
+
+    { id: 'co2_1', icon: '🍃', name: 'Foglia Verde', desc: 'Risparmia 2kg di CO2', goal: 2, type: 'co2' },
+    { id: 'co2_2', icon: '🌳', name: 'Piantatore di Alberi', desc: 'Risparmia 10kg di CO2', goal: 10, type: 'co2' },
+    { id: 'co2_3', icon: '🌲', name: 'Guardia Forestale', desc: 'Risparmia 25kg di CO2', goal: 25, type: 'co2' },
+    { id: 'co2_4', icon: '🌍', name: 'Eroe del Pianeta', desc: 'Risparmia 50kg di CO2', goal: 50, type: 'co2' },
+
+    { id: 'recipe_1', icon: '🍳', name: 'Sguattero AI', desc: 'Completa la prima ricetta', goal: 1, type: 'recipe' },
+    { id: 'recipe_2', icon: '👨‍🍳', name: 'Sous-Chef Digital', desc: 'Completa 5 ricette', goal: 5, type: 'recipe' },
+    { id: 'recipe_3', icon: '👨‍🍳', name: 'Executive Chef', desc: 'Completa 20 ricette', goal: 20, type: 'recipe' },
+
+    { id: 'pioneer', icon: '🚀', name: 'Pioniere WBS', desc: 'Aggiungi il tuo primo prodotto', goal: 1, type: 'foodCount' },
+    { id: 'inv1', icon: '📦', name: 'Approvvigionatore', desc: 'Aggiungi 10 prodotti totali', goal: 10, type: 'foodCount' },
+    { id: 'inv2', icon: '🏗️', name: 'Magazziniere', desc: 'Aggiungi 50 prodotti totali', goal: 50, type: 'foodCount' },
+    { id: 'inv3', icon: '🏰', name: 'Signore del Cibo', desc: 'Aggiungi 150 prodotti totali', goal: 150, type: 'foodCount' }
+];
+
 let lastScannedBarcode = "";
 let editingIndex = -1;
 let lastRecipes = [];
@@ -109,6 +136,7 @@ function init() {
     updateUI();
     setupSortButtons();
     setupDietCheckboxes();
+    renderBadges();
 }
 
 function saveState() {
@@ -138,8 +166,45 @@ function updateUI() {
     updateWeeklyChart();
     renderInventory();
     checkRecipes();
+    renderBadges();
     saveState();
 }
+
+function renderBadges() {
+    if (!badgesGrid) return;
+
+    badgesGrid.innerHTML = badges.map(badge => {
+        let current = 0;
+        if (badge.type === 'savings') current = state.savings;
+        if (badge.type === 'co2') current = state.co2;
+        if (badge.type === 'recipe') current = state.totalCompleted;
+        if (badge.type === 'foodCount') current = state.foodCount;
+
+        const unlocked = current >= badge.goal;
+        const progress = Math.min((current / badge.goal) * 100, 100);
+
+        return `
+        <div class="glass badge-card ${unlocked ? 'unlocked' : 'locked'}" style="padding: 12px; border-radius: 12px; text-align: center; border: 1px solid ${unlocked ? 'var(--secondary)' : 'var(--glass-border)'}; display: flex; flex-direction: column; align-items: center; transition: all 0.3s;">
+            <div style="font-size: 1.8rem; margin-bottom: 8px; filter: ${unlocked ? 'none' : 'grayscale(1) opacity(0.3)'};">
+                ${badge.icon}
+            </div>
+            <h5 style="font-size: 0.65rem; color: white; margin-bottom: 4px; line-height: 1.2;">${badge.name}</h5>
+            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 4px; overflow: hidden;">
+                <div style="width: ${progress}%; height: 100%; background: ${unlocked ? 'var(--secondary)' : 'var(--primary)'}; border-radius: 10px;"></div>
+            </div>
+            <p style="font-size: 0.5rem; color: var(--text-muted); margin-top: 4px;">${unlocked ? 'SBLOCCATO' : `${current.toFixed(badge.type === 'co2' || badge.type === 'savings' ? 1 : 0)}/${badge.goal}`}</p>
+        </div>`;
+    }).join('');
+}
+
+badgesBtn.addEventListener('click', () => {
+    renderBadges(); // Refresh progress
+    badgesModal.style.display = 'flex';
+});
+closeBadgesBtn.addEventListener('click', () => { badgesModal.style.display = 'none'; });
+window.addEventListener('click', (e) => {
+    if (e.target === badgesModal) badgesModal.style.display = 'none';
+});
 
 // --- WEEKLY CHART ---
 function updateWeeklyChart() {
