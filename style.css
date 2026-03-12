@@ -17,6 +17,7 @@
     --bg-dark: #0f172a;
     /* Deep Navy */
     --bg-card: rgba(30, 41, 59, 0.7);
+    --overlay-bg: rgba(15, 23, 42, 0.85);
 
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
@@ -32,12 +33,13 @@
 
 /* Light Theme Variables */
 body.light-theme {
-    --bg-dark: #f1f5f9;
-    --bg-card: rgba(255, 255, 255, 0.8);
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --bg-dark: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -110,11 +112,29 @@ h3,
 }
 
 .logo-slogan {
-    font-size: 0.62rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    opacity: 0.8;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.1));
+    margin-top: -2px;
+    animation: fadeInSlogan 1s ease-out;
+}
+
+@keyframes fadeInSlogan {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .logo-container img:hover {
