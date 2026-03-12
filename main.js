@@ -184,15 +184,23 @@ function renderBadges() {
         const progress = Math.min((current / badge.goal) * 100, 100);
 
         return `
-        <div class="glass badge-card ${unlocked ? 'unlocked' : 'locked'}" style="padding: 12px; border-radius: 12px; text-align: center; border: 1px solid ${unlocked ? 'var(--secondary)' : 'var(--glass-border)'}; display: flex; flex-direction: column; align-items: center; transition: all 0.3s;">
-            <div style="font-size: 1.8rem; margin-bottom: 8px; filter: ${unlocked ? 'none' : 'grayscale(1) opacity(0.3)'};">
-                ${badge.icon}
+        <div class="glass badge-card ${unlocked ? 'unlocked' : 'locked'}" style="padding: 16px; border-radius: 16px; text-align: center; border: 1px solid ${unlocked ? 'var(--secondary)' : 'rgba(255,255,255,0.05)'}; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: ${unlocked ? 'rgba(16, 185, 129, 0.05)' : 'rgba(255,255,255,0.02)'};">
+            <div>
+                <div style="font-size: 2.2rem; margin-bottom: 10px; filter: ${unlocked ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.4))' : 'grayscale(1) opacity(0.2)'}; transform: ${unlocked ? 'scale(1.1)' : 'scale(0.9)'};">
+                    ${badge.icon}
+                </div>
+                <h5 style="font-size: 0.72rem; color: white; margin-bottom: 4px; font-weight: 700; line-height: 1.2;">${badge.name}</h5>
+                <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin-bottom: 8px;">${badge.desc}</p>
             </div>
-            <h5 style="font-size: 0.65rem; color: white; margin-bottom: 4px; line-height: 1.2;">${badge.name}</h5>
-            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 4px; overflow: hidden;">
-                <div style="width: ${progress}%; height: 100%; background: ${unlocked ? 'var(--secondary)' : 'var(--primary)'}; border-radius: 10px;"></div>
+            
+            <div style="width: 100%;">
+                <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 4px;">
+                    <div style="width: ${progress}%; height: 100%; background: ${unlocked ? 'var(--secondary)' : 'var(--primary)'}; border-radius: 10px; transition: width 0.8s ease;"></div>
+                </div>
+                <p style="font-size: 0.55rem; color: ${unlocked ? 'var(--secondary)' : 'var(--text-muted)'}; font-weight: 700; letter-spacing: 0.02em;">
+                    ${unlocked ? 'SBLOCCATO' : `${current.toFixed(badge.type === 'co2' || badge.type === 'savings' ? 1 : 0)} / ${badge.goal}`}
+                </p>
             </div>
-            <p style="font-size: 0.5rem; color: var(--text-muted); margin-top: 4px;">${unlocked ? 'SBLOCCATO' : `${current.toFixed(badge.type === 'co2' || badge.type === 'savings' ? 1 : 0)}/${badge.goal}`}</p>
         </div>`;
     }).join('');
 }
