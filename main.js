@@ -6,7 +6,7 @@ const state = {
     inventory: JSON.parse(localStorage.getItem('wbs_inventory')) || [],
     userName: localStorage.getItem('wbs_userName') || "Utente",
     geminiKey: localStorage.getItem('wbs_geminiKey') || "",
-    dietPrefs: JSON.parse(localStorage.getItem('wbs_dietPrefs')) || { vegetariano: false, vegano: false, glutenFree: false },
+    dietPrefs: JSON.parse(localStorage.getItem('wbs_dietPrefs')) || { vegetariano: false, vegano: false, glutenFree: false, chetogenica: false, iperproteica: false },
     sortOrder: localStorage.getItem('wbs_sortOrder') || 'expiry', // 'expiry' or 'price'
     weeklyConsumed: JSON.parse(localStorage.getItem('wbs_weeklyConsumed')) || [],
     completedRecipes: JSON.parse(localStorage.getItem('wbs_completedRecipes')) || [],
@@ -816,7 +816,7 @@ closeStepsBtn.addEventListener('click', () => {
 
 // --- DIET PREFERENCES ---
 function setupDietCheckboxes() {
-    const prefs = ['vegetariano', 'vegano', 'glutenFree'];
+    const prefs = ['vegetariano', 'vegano', 'glutenFree', 'chetogenica', 'iperproteica'];
     prefs.forEach(pref => {
         const el = document.getElementById(`diet-${pref}`);
         if (!el) return;
@@ -851,6 +851,8 @@ async function fetchAIRecipe(ingredients) {
     if (state.dietPrefs.vegetariano) dietLines.push("- La ricetta deve essere VEGETARIANA (no carne, no pesce)");
     if (state.dietPrefs.vegano) dietLines.push("- La ricetta deve essere VEGANA (no prodotti animali)");
     if (state.dietPrefs.glutenFree) dietLines.push("- La ricetta deve essere SENZA GLUTINE");
+    if (state.dietPrefs.chetogenica) dietLines.push("- La ricetta deve essere CHETOGENICA (bassi carboidrati, alti grassi)");
+    if (state.dietPrefs.iperproteica) dietLines.push("- La ricetta deve essere IPERPROTEICA (molte proteine)");
 
     try {
         const prompt = `Sei uno Chef Creativo. Il mio frigo contiene i seguenti ingredienti: ${ingredients.join(', ')}.
@@ -912,6 +914,8 @@ profileBtn.addEventListener('click', () => {
     document.getElementById('diet-vegetariano').checked = state.dietPrefs.vegetariano;
     document.getElementById('diet-vegano').checked = state.dietPrefs.vegano;
     document.getElementById('diet-glutenFree').checked = state.dietPrefs.glutenFree;
+    document.getElementById('diet-chetogenica').checked = state.dietPrefs.chetogenica;
+    document.getElementById('diet-iperproteica').checked = state.dietPrefs.iperproteica;
     profileModal.style.display = 'flex';
 });
 cancelProfileBtn.addEventListener('click', () => { profileModal.style.display = 'none'; });
@@ -925,6 +929,8 @@ saveProfileBtn.addEventListener('click', () => {
         state.dietPrefs.vegetariano = document.getElementById('diet-vegetariano').checked;
         state.dietPrefs.vegano = document.getElementById('diet-vegano').checked;
         state.dietPrefs.glutenFree = document.getElementById('diet-glutenFree').checked;
+        state.dietPrefs.chetogenica = document.getElementById('diet-chetogenica').checked;
+        state.dietPrefs.iperproteica = document.getElementById('diet-iperproteica').checked;
         saveState();
         updateUI();
         profileModal.style.display = 'none';

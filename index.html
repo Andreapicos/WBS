@@ -178,239 +178,236 @@
             </button>
         </div>
 
-        <!-- Scan Overlay -->
-        <div id="scan-overlay"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(15px); z-index: 200; display: none; flex-direction: column; align-items: center; justify-content: center; color: var(--text-main);">
-            <div id="reader-container" style="width: 100%; max-width: 400px; padding: 20px;">
-                <div id="reader"
-                    style="width: 100%; border-radius: 20px; overflow: hidden; border: 2px solid var(--primary);"></div>
-            </div>
-            <p style="margin-top: 24px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted);">INQUADRA IL
-                BARCODE</p>
-            <button id="close-scan" class="btn glass"
-                style="margin-top: 32px; padding: 12px 32px; color: var(--text-main);">Annulla</button>
-        </div>
+    </div>
 
-        <!-- Choice Modal -->
-        <div id="choice-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 250; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 36px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--glass-border); background: var(--bg-card); margin: auto;">
-                <h3 class="brand-font" style="margin-bottom: 24px;">Cosa vuoi fare?</h3>
-                <div style="display: grid; gap: 16px;">
-                    <button id="choice-scan" class="btn btn-primary" style="height: 60px; font-size: 1rem;">📸 Scansiona
-                        Barcode</button>
-                    <button id="choice-manual" class="btn glass"
-                        style="height: 60px; font-size: 1rem; border: 1px solid var(--primary); color: var(--text-main); background: var(--bg-card);">✏️
-                        Inserimento
-                        Manuale</button>
-                    <button id="cancel-choice" class="btn text-muted"
-                        style="background: transparent; margin-top: 8px; color: var(--text-muted); padding: 8px;">Annulla</button>
+    <!-- Modals moved to root for better alignment (Badge Modal style) -->
+
+    <!-- Choice Modal -->
+    <div id="choice-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 250; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 36px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--glass-border); background: var(--bg-card); margin: auto;">
+            <h3 class="brand-font" style="margin-bottom: 24px;">Cosa vuoi fare?</h3>
+            <div style="display: grid; gap: 16px;">
+                <button id="choice-scan" class="btn btn-primary" style="height: 60px; font-size: 1rem;">📸 Scansiona
+                    Barcode</button>
+                <button id="choice-manual" class="btn glass"
+                    style="height: 60px; font-size: 1rem; border: 1px solid var(--primary); color: var(--text-main); background: var(--bg-card);">✏️
+                    Inserimento
+                    Manuale</button>
+                <button id="cancel-choice" class="btn text-muted"
+                    style="background: transparent; margin-top: 8px; color: var(--text-muted); padding: 8px;">Annulla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile & Settings Modal -->
+    <div id="profile-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 350; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
+            <h3 class="brand-font" style="margin-bottom: 8px;">Il Tuo Profilo</h3>
+            <p class="text-muted" style="margin-bottom: 24px;">Personalizza la tua esperienza e configura l'AI.</p>
+
+            <div style="display: grid; gap: 20px;">
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">IL
+                        TUO NOME</label>
+                    <input type="text" id="user-name-input" placeholder="es. Andrea"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">CHIAVE
+                        API GEMINI</label>
+                    <input type="password" id="gemini-key-input" placeholder="Incolla qui la chiave AIzaSy..."
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                    <p style="font-size: 0.65rem; color: var(--text-muted); margin-top: 4px;">Ottienila su <a
+                            href="https://aistudio.google.com/app/apikey" target="_blank"
+                            style="color: var(--primary);">Google AI Studio</a></p>
+                </div>
+
+                <!-- Diet Preferences -->
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--primary-light);">PREFERENZE
+                        DIETA 🥗</label>
+                    <div style="display: grid; gap: 10px;">
+                        <label class="diet-option">
+                            <input type="checkbox" id="diet-vegetariano">
+                            <span>🥦 Vegetariano</span>
+                        </label>
+                        <label class="diet-option">
+                            <input type="checkbox" id="diet-vegano">
+                            <span>🌱 Vegano</span>
+                        </label>
+                        <label class="diet-option">
+                            <input type="checkbox" id="diet-glutenFree">
+                            <span>🚫🌾 Senza Glutine</span>
+                        </label>
+                        <label class="diet-option">
+                            <input type="checkbox" id="diet-chetogenica">
+                            <span>🥩 Chetogenica</span>
+                        </label>
+                        <label class="diet-option">
+                            <input type="checkbox" id="diet-iperproteica">
+                            <span>💪 Iperproteica</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--primary-light);">TEMA
+                        APPLICAZIONE 🌗</label>
+                    <div
+                        style="display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                        <button id="theme-dark" class="btn"
+                            style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: var(--primary); color: white;">🌙
+                            Dark</button>
+                        <button id="theme-light" class="btn"
+                            style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: transparent; color: var(--text-muted);">☀️
+                            Light</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                    <button id="cancel-profile" class="btn"
+                        style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Chiudi</button>
+                    <button id="save-profile" class="btn btn-primary" style="flex: 1;">Salva</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Profile & Settings Modal -->
-        <div id="profile-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 350; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
-                <h3 class="brand-font" style="margin-bottom: 8px;">Il Tuo Profilo</h3>
-                <p class="text-muted" style="margin-bottom: 24px;">Personalizza la tua esperienza e configura l'AI.</p>
-                <!-- ... grid content ... -->
+    <!-- Reset Confirmation Modal -->
+    <div id="reset-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 40px; border-radius: var(--radius-lg); text-align: center; border: 2px solid var(--danger); background: var(--bg-card); margin: auto;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+            <h2 class="brand-font" style="margin-bottom: 12px; color: var(--text-main);">Sei sicuro?</h2>
+            <p class="text-muted" style="margin-bottom: 32px; line-height: 1.5;">Questa azione azzererà tutti i tuoi
+                risparmi, la CO2 salvata e svuoterà il tuo inventario.</p>
+            <div style="display: grid; gap: 16px;">
+                <button id="confirm-reset" class="btn"
+                    style="background: var(--danger); color: white; height: 56px; font-weight: 700;">SÌ, AZZERA
+                    TUTTO</button>
+                <button id="cancel-reset" class="btn glass"
+                    style="height: 56px; background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-main);">Annulla</button>
+            </div>
+        </div>
+    </div>
 
-                <div style="display: grid; gap: 20px;">
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">IL
-                            TUO NOME</label>
-                        <input type="text" id="user-name-input" placeholder="es. Andrea"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                    </div>
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">CHIAVE
-                            API GEMINI</label>
-                        <input type="password" id="gemini-key-input" placeholder="Incolla qui la chiave AIzaSy..."
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                        <p style="font-size: 0.65rem; color: var(--text-muted); margin-top: 4px;">Ottienila su <a
-                                href="https://aistudio.google.com/app/apikey" target="_blank"
-                                style="color: var(--primary);">Google AI Studio</a></p>
-                    </div>
-
-                    <!-- Diet Preferences -->
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--primary-light);">PREFERENZE
-                            DIETA 🥗</label>
-                        <div style="display: grid; gap: 10px;">
-                            <label class="diet-option">
-                                <input type="checkbox" id="diet-vegetariano">
-                                <span>🥦 Vegetariano</span>
-                            </label>
-                            <label class="diet-option">
-                                <input type="checkbox" id="diet-vegano">
-                                <span>🌱 Vegano</span>
-                            </label>
-                            <label class="diet-option">
-                                <input type="checkbox" id="diet-glutenFree">
-                                <span>🚫🌾 Senza Glutine</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--primary-light);">TEMA
-                            APPLICAZIONE 🌗</label>
-                        <div
-                            style="display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
-                            <button id="theme-dark" class="btn"
-                                style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: var(--primary); color: white;">🌙
-                                Dark</button>
-                            <button id="theme-light" class="btn"
-                                style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: transparent; color: var(--text-muted);">☀️
-                                Light</button>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; gap: 12px; margin-top: 12px;">
-                        <button id="cancel-profile" class="btn"
-                            style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Chiudi</button>
-                        <button id="save-profile" class="btn btn-primary" style="flex: 1;">Salva</button>
-                    </div>
+    <!-- Manual Input Modal -->
+    <div id="manual-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
+            <h3 class="brand-font" style="margin-bottom: 8px;">Dettagli Prodotto</h3>
+            <p class="text-muted" style="margin-bottom: 24px;">Inserisci le informazioni per salvarlo
+                nell'inventario.</p>
+            <div style="display: grid; gap: 20px;">
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">NOME
+                        PRODOTTO</label>
+                    <input type="text" id="manual-name" placeholder="es. Yogurt Greco"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">PREZZO
+                        (€)</label>
+                    <input type="number" id="manual-price" step="0.01" placeholder="0.00"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">DATA
+                        DI SCADENZA</label>
+                    <input type="date" id="manual-expiry"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none; color-scheme: light dark;">
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                    <button id="cancel-manual" class="btn"
+                        style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Annulla</button>
+                    <button id="save-manual" class="btn btn-primary" style="flex: 1;">Aggiungi</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Reset Confirmation Modal -->
-        <div id="reset-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 40px; border-radius: var(--radius-lg); text-align: center; border: 2px solid var(--danger); background: var(--bg-card); margin: auto;">
-                <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
-                <h2 class="brand-font" style="margin-bottom: 12px; color: var(--text-main);">Sei sicuro?</h2>
-                <p class="text-muted" style="margin-bottom: 32px; line-height: 1.5;">Questa azione azzererà tutti i tuoi
-                    risparmi, la CO2 salvata e svuoterà il tuo inventario.</p>
-                <div style="display: grid; gap: 16px;">
-                    <button id="confirm-reset" class="btn"
-                        style="background: var(--danger); color: white; height: 56px; font-weight: 700;">SÌ, AZZERA
-                        TUTTO</button>
-                    <button id="cancel-reset" class="btn glass"
-                        style="height: 56px; background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-main);">Annulla</button>
+    <!-- Edit Product Modal -->
+    <div id="edit-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 310; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--accent); background: var(--bg-card); margin: auto;">
+            <h3 class="brand-font" style="margin-bottom: 8px;">✏️ Modifica Prodotto</h3>
+            <p class="text-muted" style="margin-bottom: 24px;">Aggiorna le informazioni del prodotto.</p>
+            <div style="display: grid; gap: 20px;">
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">NOME
+                        PRODOTTO</label>
+                    <input type="text" id="edit-name"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">PREZZO
+                        (€)</label>
+                    <input type="number" id="edit-price" step="0.01"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">DATA
+                        DI SCADENZA</label>
+                    <input type="date" id="edit-expiry"
+                        style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none; color-scheme: light dark;">
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                    <button id="cancel-edit" class="btn"
+                        style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Annulla</button>
+                    <button id="save-edit" class="btn"
+                        style="flex: 1; background: var(--accent); color: var(--bg-dark); font-weight: 700;">Salva</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Manual Input Modal -->
-        <div id="manual-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
-                <h3 class="brand-font" style="margin-bottom: 8px;">Dettagli Prodotto</h3>
-                <!-- ... grid content ... -->
-                <p class="text-muted" style="margin-bottom: 24px;">Inserisci le informazioni per salvarlo
-                    nell'inventario.</p>
-                <div style="display: grid; gap: 20px;">
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">NOME
-                            PRODOTTO</label>
-                        <input type="text" id="manual-name" placeholder="es. Yogurt Greco"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                    </div>
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">PREZZO
-                            (€)</label>
-                        <input type="number" id="manual-price" step="0.01" placeholder="0.00"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                    </div>
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">DATA
-                            DI SCADENZA</label>
-                        <input type="date" id="manual-expiry"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none; color-scheme: light dark;">
-                    </div>
-                    <div style="display: flex; gap: 12px; margin-top: 12px;">
-                        <button id="cancel-manual" class="btn"
-                            style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Annulla</button>
-                        <button id="save-manual" class="btn btn-primary" style="flex: 1;">Aggiungi</button>
-                    </div>
-                </div>
+    <!-- Recipe Steps Modal -->
+    <div id="steps-modal"
+        style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(20px); z-index: 450; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 480px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--secondary); background: var(--bg-card); margin: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 id="steps-title" class="brand-font" style="font-size: 1.1rem; color: var(--text-main);"></h3>
+                <button id="close-steps"
+                    style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; line-height: 1;">✕</button>
             </div>
+            <div id="steps-content"></div>
         </div>
+    </div>
 
-        <!-- Edit Product Modal -->
-        <div id="edit-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 310; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--accent); background: var(--bg-card); margin: auto;">
-                <h3 class="brand-font" style="margin-bottom: 8px;">✏️ Modifica Prodotto</h3>
-                <!-- ... grid content ... -->
-                <p class="text-muted" style="margin-bottom: 24px;">Aggiorna le informazioni del prodotto.</p>
-                <div style="display: grid; gap: 20px;">
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">NOME
-                            PRODOTTO</label>
-                        <input type="text" id="edit-name"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                    </div>
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">PREZZO
-                            (€)</label>
-                        <input type="number" id="edit-price" step="0.01"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
-                    </div>
-                    <div>
-                        <label
-                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">DATA
-                            DI SCADENZA</label>
-                        <input type="date" id="edit-expiry"
-                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none; color-scheme: light dark;">
-                    </div>
-                    <div style="display: flex; gap: 12px; margin-top: 12px;">
-                        <button id="cancel-edit" class="btn"
-                            style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Annulla</button>
-                        <button id="save-edit" class="btn"
-                            style="flex: 1; background: var(--accent); color: var(--bg-dark); font-weight: 700;">Salva</button>
-                    </div>
-                </div>
-            </div>
+    <!-- Founders Section -->
+    <footer
+        style="margin-top: 48px; padding-bottom: 24px; border-top: 1px solid var(--glass-border); text-align: center;">
+        <p class="text-muted"
+            style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; margin-top: 24px;">
+            Founders</p>
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Andrea Miraglia</span>
+            <span style="color: var(--glass-border);">|</span>
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Matteo Calia</span>
+            <span style="color: var(--glass-border);">|</span>
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Cristian Simonetti</span>
         </div>
-
-        <!-- Recipe Steps Modal -->
-        <div id="steps-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(20px); z-index: 450; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
-            <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 480px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--secondary); background: var(--bg-card); margin: auto;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 id="steps-title" class="brand-font" style="font-size: 1.1rem; color: var(--text-main);"></h3>
-                    <button id="close-steps"
-                        style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; line-height: 1;">✕</button>
-                </div>
-                <div id="steps-content"></div>
-            </div>
-        </div>
-        <!-- Founders Section -->
-        <footer
-            style="margin-top: 48px; padding-bottom: 24px; border-top: 1px solid var(--glass-border); text-align: center;">
-            <p class="text-muted"
-                style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; margin-top: 24px;">
-                Founders</p>
-            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Andrea Miraglia</span>
-                <span style="color: var(--glass-border);">|</span>
-                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Matteo Calia</span>
-                <span style="color: var(--glass-border);">|</span>
-                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Cristian Simonetti</span>
-            </div>
-            <p style="margin-top: 24px; font-size: 0.7rem; color: var(--text-muted); opacity: 0.6;">&copy; 2026 WBS -
-                Waste Back Saving</p>
-        </footer>
+        <p style="margin-top: 24px; font-size: 0.7rem; color: var(--text-muted); opacity: 0.6;">&copy; 2026 WBS -
+            Waste Back Saving</p>
+    </footer>
     </div>
 
     <style>
@@ -452,7 +449,7 @@
         </div>
     </div>
 
-    <script src="main.js?v=28"></script>
+    <script src="main.js?v=29"></script>
 </body>
 
 </html>
