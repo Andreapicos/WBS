@@ -193,10 +193,12 @@ h3,
 }
 
 .dot-pulse span {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background-color: var(--primary-light);
     border-radius: 50%;
+    margin-top: 4px;
+    /* Align better with text baseline */
     display: inline-block;
     animation: dotPulse 1.2s infinite ease-in-out;
 }
