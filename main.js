@@ -217,12 +217,17 @@ function setupThemeSelectors() {
     const lightBtn = document.getElementById('theme-light');
     if (!darkBtn || !lightBtn) return;
 
-    darkBtn.addEventListener('click', () => {
+    darkBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         state.theme = 'dark';
         applyTheme('dark');
         saveState();
     });
-    lightBtn.addEventListener('click', () => {
+    
+    lightBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         state.theme = 'light';
         applyTheme('light');
         saveState();
@@ -1104,10 +1109,12 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 2500);
 }
 
-closeScan.addEventListener('click', async () => {
-    if (html5QrCode && html5QrCode.isScanning) await html5QrCode.stop();
-    scanOverlay.style.display = 'none';
-});
+if (closeScan) {
+    closeScan.addEventListener('click', async () => {
+        if (html5QrCode && html5QrCode.isScanning) await html5QrCode.stop();
+        if (scanOverlay) scanOverlay.style.display = 'none';
+    });
+}
 
 // Run Init on DOM Ready
 if (document.readyState === 'loading') {
