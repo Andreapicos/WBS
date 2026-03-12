@@ -130,16 +130,59 @@ const badges = [
 
 let lastScannedBarcode = "";
 let editingIndex = -1;
+let deletingIndex = -1; // To track which item to delete in the modal
 let lastRecipes = [];
 
 // Initialize
 function init() {
+    console.log("🚀 WBS Initializing v34...");
     applyTheme(state.theme);
-    updateUI();
+    setupEventListeners();
     setupSortButtons();
     setupDietCheckboxes();
     renderBadges();
     setupThemeSelectors();
+    setupDeleteModal(); // Custom delete logic
+    renderInventory();
+    updateUI();
+    console.log("✅ WBS Ready!");
+}
+
+function setupEventListeners() {
+    // Re-bind actions to ensure they are active
+    const scanBtn = document.getElementById('scan-btn');
+    if (scanBtn) scanBtn.onclick = () => { choiceModal.style.display = 'flex'; };
+
+    const cancelChoiceBtn = document.getElementById('cancel-choice');
+    if (cancelChoiceBtn) cancelChoiceBtn.onclick = () => { choiceModal.style.display = 'none'; };
+
+    // ... we can keep adding more or just rely on global const where safe
+}
+
+function setupDeleteModal() {
+    const confirmBtn = document.getElementById('confirm-delete');
+    const cancelBtn = document.getElementById('cancel-delete');
+    const modal = document.getElementById('delete-modal');
+
+    if (confirmBtn) confirmBtn.onclick = () => {
+        if (deletingIndex !== -1) {
+            state.inventory.splice(deletingIndex, 1);
+            showToast("🗑️ Alimento rimosso");
+            updateUI();
+        }
+        modal.style.display = 'none';
+        deletingIndex = -1;
+    };
+
+    if (cancelBtn) cancelBtn.onclick = () => {
+        modal.style.display = 'none';
+        deletingIndex = -1;
+    };
+}
+
+function deleteItem(index) {
+    deletingIndex = index;
+    document.getElementById('delete-modal').style.display = 'flex';
 }
 
 function applyTheme(theme) {
@@ -347,10 +390,29 @@ function setupSortButtons() {
     if (!sortExpiryBtn || !sortPriceBtn) return;
 
     function updateSortUI() {
-        sortExpiryBtn.style.background = state.sortOrder === 'expiry' ? 'var(--primary)' : 'transparent';
-        sortExpiryBtn.style.color = state.sortOrder === 'expiry' ? 'white' : 'var(--text-muted)';
-        sortPriceBtn.style.background = state.sortOrder === 'price' ? 'var(--primary)' : 'transparent';
-        sortPriceBtn.style.color = state.sortOrder === 'price' ? 'white' : 'var(--text-muted)';
+        const isLight = document.body.classList.contains('light-theme');
+
+        // Expiry Button
+        if (state.sortOrder === 'expiry') {
+            sortExpiryBtn.style.background = 'var(--primary)';
+            sortExpiryBtn.style.color = 'white';
+            sortExpiryBtn.style.borderColor = 'var(--primary)';
+        } else {
+            sortExpiryBtn.style.background = isLight ? 'white' : 'transparent';
+            sortExpiryBtn.style.color = 'var(--text-muted)';
+            sortExpiryBtn.style.borderColor = 'var(--glass-border)';
+        }
+
+        // Price Button
+        if (state.sortOrder === 'price') {
+            sortPriceBtn.style.background = 'var(--primary)';
+            sortPriceBtn.style.color = 'white';
+            sortPriceBtn.style.borderColor = 'var(--primary)';
+        } else {
+            sortPriceBtn.style.background = isLight ? 'white' : 'transparent';
+            sortPriceBtn.style.color = 'var(--text-muted)';
+            sortPriceBtn.style.borderColor = 'var(--glass-border)';
+        }
     }
 
     sortExpiryBtn.addEventListener('click', () => {
@@ -410,7 +472,8 @@ function renderInventory() {
             </div>
             <div style="text-align: right; flex-shrink: 0;">
                 <p style="font-size: 0.9rem; font-weight: 700;">€${parseFloat(item.price).toFixed(2)}</p>
-                <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px;">
+                <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; align-items: center;">
+                    <button onclick="deleteItem(${realIndex})" class="btn-delete-icon" title="Rimuovi">🗑️</button>
                     <button onclick="openEditModal(${realIndex})" style="background: none; border: none; color: var(--text-muted); font-size: 0.65rem; font-weight: 700; cursor: pointer; padding: 2px 0;">✏️</button>
                     <button onclick="consumeItem(${realIndex})" style="background: none; border: none; color: var(--primary); font-size: 0.65rem; font-weight: 700; cursor: pointer; padding: 2px 0;">CONSUMA</button>
                 </div>
@@ -1033,5 +1096,9 @@ closeScan.addEventListener('click', async () => {
     scanOverlay.style.display = 'none';
 });
 
-// Run Init
-init();
+// Run Init on DOM Ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}

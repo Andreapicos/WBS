@@ -35,17 +35,18 @@
 
 /* Light Theme Variables */
 body.light-theme {
-    --bg-dark: #e2e8f0;
-    /* Soft Slate 200 - Less bright */
-    --bg-card: rgba(255, 255, 255, 0.7);
-    /* Slightly more transparent for more background bleed */
-    --overlay-bg: rgba(226, 232, 240, 0.95);
-    /* Darker matched overlay */
+    --bg-dark: #cbd5e1;
+    /* Darker Slate 300 for even better contrast */
+    --bg-card: rgba(255, 255, 255, 0.9);
+    /* More opaque for readability */
+    --overlay-bg: rgba(203, 213, 225, 0.98);
+    /* Matched opaque overlay */
     --text-main: #0f172a;
     /* Dark Navy */
-    --text-muted: #475569;
-    --glass-border: rgba(16, 185, 129, 0.25);
-    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.12);
+    --text-muted: #334155;
+    /* Darker muted text for light theme */
+    --glass-border: rgba(16, 185, 129, 0.3);
+    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -158,26 +159,62 @@ h3,
 /* Buttons */
 .btn {
     padding: 12px 24px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     border: none;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-flex;
+    font-family: 'Inter', sans-serif;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-family: 'Inter', sans-serif;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--primary);
     color: white;
 }
 
 .btn-primary:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Sort Buttons */
+#sort-expiry,
+#sort-price {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+}
+
+body.light-theme #sort-expiry,
+body.light-theme #sort-price {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-delete-icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-size: 0.9rem;
+}
+
+.btn-delete-icon:hover {
+    background: var(--danger);
+    color: white;
+    transform: scale(1.1);
 }
 
 .btn-icon {
