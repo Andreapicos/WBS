@@ -74,7 +74,8 @@
                     style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
                     <div style="font-size: 1.5rem;">1️⃣</div>
                     <div>
-                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Inserisci il cibo</h4>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: var(--text-main);">Inserisci il cibo
+                        </h4>
                         <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">Aggiungi i prodotti che hai
                             comprato.</p>
                     </div>
@@ -83,7 +84,7 @@
                     style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
                     <div style="font-size: 1.5rem;">2️⃣</div>
                     <div>
-                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Cucina con l'IA</h4>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: var(--text-main);">Cucina con l'IA</h4>
                         <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">Ricevi ricette personalizzate
                             basate su ciò che hai in frigo.</p>
                     </div>
@@ -92,7 +93,7 @@
                     style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
                     <div style="font-size: 1.5rem;">3️⃣</div>
                     <div>
-                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Risparmia soldi</h4>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: var(--text-main);">Risparmia soldi</h4>
                         <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">Vedi quanto denaro hai salvato
                             evitando lo spreco.</p>
                     </div>
@@ -187,7 +188,7 @@
             <p style="margin-top: 24px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted);">INQUADRA IL
                 BARCODE</p>
             <button id="close-scan" class="btn glass"
-                style="margin-top: 32px; padding: 12px 32px; color: white;">Annulla</button>
+                style="margin-top: 32px; padding: 12px 32px; color: var(--text-main);">Annulla</button>
         </div>
 
         <!-- Choice Modal -->
@@ -222,14 +223,14 @@
                             style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">IL
                             TUO NOME</label>
                         <input type="text" id="user-name-input" placeholder="es. Andrea"
-                            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: white; outline: none;">
+                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
                     </div>
                     <div>
                         <label
                             style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">CHIAVE
                             API GEMINI</label>
                         <input type="password" id="gemini-key-input" placeholder="Incolla qui la chiave AIzaSy..."
-                            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: white; outline: none;">
+                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
                         <p style="font-size: 0.65rem; color: var(--text-muted); margin-top: 4px;">Ottienila su <a
                                 href="https://aistudio.google.com/app/apikey" target="_blank"
                                 style="color: var(--primary);">Google AI Studio</a></p>
@@ -286,7 +287,7 @@
             <div class="glass animate-fade-in"
                 style="width: 100%; max-width: 400px; padding: 40px; border-radius: var(--radius-lg); text-align: center; border: 2px solid var(--danger);">
                 <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
-                <h2 class="brand-font" style="margin-bottom: 12px; color: white;">Sei sicuro?</h2>
+                <h2 class="brand-font" style="margin-bottom: 12px; color: var(--text-main);">Sei sicuro?</h2>
                 <p class="text-muted" style="margin-bottom: 32px; line-height: 1.5;">Questa azione azzererà tutti i tuoi
                     risparmi, la CO2 salvata e svuoterà il tuo inventario.</p>
                 <div style="display: grid; gap: 16px;">
@@ -312,21 +313,21 @@
                             style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">NOME
                             PRODOTTO</label>
                         <input type="text" id="manual-name" placeholder="es. Yogurt Greco"
-                            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: white; outline: none;">
+                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
                     </div>
                     <div>
                         <label
                             style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">PREZZO
                             (€)</label>
                         <input type="number" id="manual-price" step="0.01" placeholder="0.00"
-                            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: white; outline: none;">
+                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none;">
                     </div>
                     <div>
                         <label
                             style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-light);">DATA
                             DI SCADENZA</label>
                         <input type="date" id="manual-expiry"
-                            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: white; outline: none; color-scheme: dark;">
+                            style="width: 100%; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 12px; color: var(--text-main); outline: none; color-scheme: light dark;">
                     </div>
                     <div style="display: flex; gap: 12px; margin-top: 12px;">
                         <button id="cancel-manual" class="btn"

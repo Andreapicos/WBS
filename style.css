@@ -33,13 +33,16 @@
 
 /* Light Theme Variables */
 body.light-theme {
-    --bg-dark: #f8fafc;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --bg-dark: #ffffff;
+    --bg-card: rgba(241, 245, 249, 0.85);
+    /* Slate 100 with opacity */
+    --overlay-bg: rgba(255, 255, 255, 0.98);
     --text-main: #0f172a;
+    /* Slate 900 */
     --text-muted: #475569;
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+    /* Slate 600 */
+    --glass-border: rgba(16, 185, 129, 0.2);
+    --glass-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -113,27 +116,31 @@ h3,
 
 .logo-slogan {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    font-size: 0.82rem;
+    font-weight: 900;
+    /* Black/Extra Bold */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #10b981, #f59e0b);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.1));
-    margin-top: -2px;
-    animation: fadeInSlogan 1s ease-out;
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.2));
+    margin-top: 4px;
+    animation: fadeInSlogan 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInSlogan {
     from {
         opacity: 0;
-        transform: translateY(4px);
+        transform: scale(0.95);
+        letter-spacing: 0.2em;
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
+        letter-spacing: 0.05em;
     }
 }
 

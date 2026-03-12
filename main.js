@@ -159,12 +159,12 @@ function updateThemeUI(theme) {
     if (theme === 'light') {
         lightBtn.style.background = 'var(--primary)';
         lightBtn.style.color = 'white';
-        darkBtn.style.background = 'rgba(255,255,255,0.05)';
+        darkBtn.style.background = 'var(--glass-border)';
         darkBtn.style.color = 'var(--text-muted)';
     } else {
         darkBtn.style.background = 'var(--primary)';
         darkBtn.style.color = 'white';
-        lightBtn.style.background = 'rgba(255,255,255,0.05)';
+        lightBtn.style.background = 'var(--glass-border)';
         lightBtn.style.color = 'var(--text-muted)';
     }
 }
