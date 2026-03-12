@@ -405,23 +405,26 @@ function renderRecipes(aiResponse) {
 
             for (const aiRecipe of aiResponse) {
                 const isCompleted = state.completedRecipes.includes(aiRecipe.title);
-                const calorieColor = aiRecipe.calorieBand === 'lite' ? '#10b981' : (aiRecipe.calorieBand === 'medium' ? '#f59e0b' : '#ef4444');
+
+                // Emerald Premium Theme Colors
+                const accentColor = 'var(--secondary)'; // Emerald Green
+                const mutedAccent = 'rgba(16, 185, 129, 0.1)';
 
                 recipesHTML += `
-                <div class="glass" style="padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; border-left: 4px solid ${isCompleted ? '#10b981' : 'transparent'};">
+                <div class="glass" style="padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; border-left: 4px solid ${isCompleted ? accentColor : 'transparent'};">
                     <div style="display: flex; gap: 16px;">
                         <div style="width: 72px; height: 72px; border-radius: var(--radius-sm); background: linear-gradient(135deg, #1e293b, #0f172a); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative;">
                             ${aiRecipe.emoji || "🥗"}
-                            ${isCompleted ? '<div style="position: absolute; top: -5px; right: -5px; background: #10b981; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">L</div>' : ''}
+                            ${isCompleted ? `<div style="position: absolute; top: -5px; right: -5px; background: ${accentColor}; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">✓</div>` : ''}
                         </div>
                         <div style="flex: 1; min-width: 0;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                 <h4 class="brand-font" style="font-size: 0.95rem; color: white; margin-bottom: 4px;">
-                                    ${aiRecipe.title} ${isCompleted ? ' <span style="color: #10b981;">✅</span>' : ''}
+                                    ${aiRecipe.title} ${isCompleted ? ` <span style="color: ${accentColor};">✅</span>` : ''}
                                 </h4>
                                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
-                                    <span style="font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; background: ${calorieColor}15; color: ${calorieColor}; border: 1px solid ${calorieColor}30; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;">
-                                        🔥 ${aiRecipe.calories || 0} kcal
+                                    <span style="font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; background: ${mutedAccent}; color: white; border: 1px solid rgba(255,255,255,0.1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 4px;">
+                                        <span style="color: ${accentColor};">🔥</span> ${aiRecipe.calories || 0} kcal
                                     </span>
                                     <div style="display: flex; gap: 4px;">
                                         <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600; display: flex; align-items: center; gap: 4px;">
