@@ -419,9 +419,14 @@ function renderRecipes(aiResponse) {
                                 <h4 class="brand-font" style="font-size: 0.95rem; color: white; margin-bottom: 4px;">
                                     ${aiRecipe.title} ${isCompleted ? ' <span style="color: #10b981;">✅</span>' : ''}
                                 </h4>
-                                <span style="font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; background: ${calorieColor}20; color: ${calorieColor}; border: 1px solid ${calorieColor}40; font-weight: 700; text-transform: uppercase;">
-                                    ${aiRecipe.calorieBand || 'lite'} • ${aiRecipe.calories || 0} kcal
-                                </span>
+                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                                    <span style="font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; background: ${calorieColor}20; color: ${calorieColor}; border: 1px solid ${calorieColor}40; font-weight: 700; text-transform: uppercase;">
+                                        ${aiRecipe.calorieBand || 'lite'} • ${aiRecipe.calories || 0} kcal
+                                    </span>
+                                    <span style="font-size: 0.6rem; padding: 2px 6px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600;">
+                                        📊 ${aiRecipe.difficulty || 'Media'}
+                                    </span>
+                                </div>
                             </div>
                             <p style="font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.4;">${aiRecipe.description}</p>
                             ${aiRecipe.ingredientsUsed ? `<p style="font-size: 0.7rem; margin-top: 6px; color: var(--secondary); font-weight: 600;">👨‍🍳 ${aiRecipe.ingredientsUsed.join(', ')}</p>` : ''}
@@ -721,10 +726,12 @@ Rispondi SOLO ed ESCLUSIVAMENTE con un array JSON in questo formato esatto, senz
     "emoji": "🍲",
     "ingredientsUsed": ["ingrediente1", "ingrediente2"],
     "calories": 450,
-    "calorieBand": "medium"
+    "calorieBand": "medium",
+    "difficulty": "Facile"
   }
 ]
-Nota: calorieBand deve essere "lite" (<400), "medium" (400-700), o "high" (>700).`;
+Nota: calorieBand deve essere "lite" (<400), "medium" (400-700), o "high" (>700).
+La difficulty deve essere uno tra: "Facile", "Media", "Difficile".`;
 
         const data = await callGeminiAPI(prompt, state.geminiKey);
 
