@@ -35,11 +35,12 @@
 
 /* Light Theme Variables */
 body.light-theme {
-    --bg-dark: #f8fafc;
-    /* Soft Premium Slate 50 */
-    --bg-card: rgba(241, 245, 249, 0.95);
-    /* Solid-feeling Slate 100 */
-    --overlay-bg: rgba(255, 255, 255, 1.0);
+    --bg-dark: #f1f5f9;
+    /* Ultra Soft Slate 100 */
+    --bg-card: rgba(255, 255, 255, 0.8);
+    /* Glassy White */
+    --overlay-bg: rgba(241, 245, 249, 0.9);
+    /* Soft Opaque Slate */
     --text-main: #0f172a;
     /* Dark Navy */
     --text-muted: #475569;

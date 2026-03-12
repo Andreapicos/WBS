@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WBS - Waste Back Saving</title>
-    <link rel="stylesheet" href="style.css?v=27">
+    <link rel="stylesheet" href="style.css?v=28">
     <!-- QR/Barcode Scanner Library -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <!-- PWA & Mobile Optimization -->
@@ -193,19 +193,19 @@
 
         <!-- Choice Modal -->
         <div id="choice-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 250; display: none; align-items: center; justify-content: center; padding: 20px;">
+            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 250; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 36px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--glass-border); background: var(--bg-card);">
+                style="width: 100%; max-width: 400px; padding: 36px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--glass-border); background: var(--bg-card); margin: auto;">
                 <h3 class="brand-font" style="margin-bottom: 24px;">Cosa vuoi fare?</h3>
                 <div style="display: grid; gap: 16px;">
                     <button id="choice-scan" class="btn btn-primary" style="height: 60px; font-size: 1rem;">📸 Scansiona
                         Barcode</button>
                     <button id="choice-manual" class="btn glass"
-                        style="height: 60px; font-size: 1rem; border: 1px solid var(--primary); color: var(--text-main);">✏️
+                        style="height: 60px; font-size: 1rem; border: 1px solid var(--primary); color: var(--text-main); background: var(--bg-card);">✏️
                         Inserimento
                         Manuale</button>
                     <button id="cancel-choice" class="btn text-muted"
-                        style="background: transparent; margin-top: 8px; color: var(--text-muted);">Annulla</button>
+                        style="background: transparent; margin-top: 8px; color: var(--text-muted); padding: 8px;">Annulla</button>
                 </div>
             </div>
         </div>
@@ -214,9 +214,10 @@
         <div id="profile-modal"
             style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 350; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); margin: auto;">
+                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
                 <h3 class="brand-font" style="margin-bottom: 8px;">Il Tuo Profilo</h3>
                 <p class="text-muted" style="margin-bottom: 24px;">Personalizza la tua esperienza e configura l'AI.</p>
+                <!-- ... grid content ... -->
 
                 <div style="display: grid; gap: 20px;">
                     <div>
@@ -284,9 +285,9 @@
 
         <!-- Reset Confirmation Modal -->
         <div id="reset-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px;">
+            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(12px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 40px; border-radius: var(--radius-lg); text-align: center; border: 2px solid var(--danger);">
+                style="width: 100%; max-width: 400px; padding: 40px; border-radius: var(--radius-lg); text-align: center; border: 2px solid var(--danger); background: var(--bg-card); margin: auto;">
                 <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
                 <h2 class="brand-font" style="margin-bottom: 12px; color: var(--text-main);">Sei sicuro?</h2>
                 <p class="text-muted" style="margin-bottom: 32px; line-height: 1.5;">Questa azione azzererà tutti i tuoi
@@ -295,17 +296,19 @@
                     <button id="confirm-reset" class="btn"
                         style="background: var(--danger); color: white; height: 56px; font-weight: 700;">SÌ, AZZERA
                         TUTTO</button>
-                    <button id="cancel-reset" class="btn glass" style="height: 56px;">Annulla</button>
+                    <button id="cancel-reset" class="btn glass"
+                        style="height: 56px; background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-main);">Annulla</button>
                 </div>
             </div>
         </div>
 
         <!-- Manual Input Modal -->
         <div id="manual-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;">
+            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary);">
+                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); background: var(--bg-card); margin: auto;">
                 <h3 class="brand-font" style="margin-bottom: 8px;">Dettagli Prodotto</h3>
+                <!-- ... grid content ... -->
                 <p class="text-muted" style="margin-bottom: 24px;">Inserisci le informazioni per salvarlo
                     nell'inventario.</p>
                 <div style="display: grid; gap: 20px;">
@@ -341,10 +344,11 @@
 
         <!-- Edit Product Modal -->
         <div id="edit-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 310; display: none; align-items: center; justify-content: center; padding: 20px;">
+            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(10px); z-index: 310; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--accent);">
+                style="width: 100%; max-width: 400px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--accent); background: var(--bg-card); margin: auto;">
                 <h3 class="brand-font" style="margin-bottom: 8px;">✏️ Modifica Prodotto</h3>
+                <!-- ... grid content ... -->
                 <p class="text-muted" style="margin-bottom: 24px;">Aggiorna le informazioni del prodotto.</p>
                 <div style="display: grid; gap: 20px;">
                     <div>
@@ -380,9 +384,9 @@
 
         <!-- Recipe Steps Modal -->
         <div id="steps-modal"
-            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(20px); z-index: 450; display: none; align-items: flex-end; justify-content: center; padding: 0;">
+            style="position: fixed; inset: 0; background: var(--overlay-bg); backdrop-filter: blur(20px); z-index: 450; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
             <div class="glass animate-fade-in"
-                style="width: 100%; max-width: 480px; padding: 32px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border-top: 2px solid var(--secondary); max-height: 80vh; overflow-y: auto;">
+                style="width: 100%; max-width: 480px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--secondary); background: var(--bg-card); margin: auto;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h3 id="steps-title" class="brand-font" style="font-size: 1.1rem; color: var(--text-main);"></h3>
                     <button id="close-steps"
@@ -448,7 +452,7 @@
         </div>
     </div>
 
-    <script src="main.js?v=27"></script>
+    <script src="main.js?v=28"></script>
 </body>
 
 </html>
