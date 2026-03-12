@@ -380,7 +380,8 @@ function showRecipeLoading() {
     recipeEl.innerHTML = `
         <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 1.2rem;">👨‍🍳</span>
-            <span class="brand-font" style="font-size: 0.9rem; color: var(--primary-light); letter-spacing: 0.05em;">L'IA sta cucinando...</span>
+            <span class="brand-font" style="font-size: 0.9rem; color: var(--primary-light); letter-spacing: 0.05em;">L'IA sta cucinando</span>
+            <div class="dot-pulse"><span></span><span></span><span></span></div>
         </div>
         <div style="display: flex; gap: 16px; align-items: center;">
             <div class="shimmer" style="width: 80px; height: 80px; border-radius: var(--radius-sm); flex-shrink: 0;"></div>
