@@ -30,6 +30,7 @@
         <header style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
             <div class="logo-container">
                 <img src="logo.jpg" alt="WBS Logo">
+                <span class="logo-slogan">Trasformiamo il cibo salvato in denaro visibile.</span>
             </div>
             <div style="display: flex; gap: 12px; align-items: center;">
                 <button id="reset-btn" class="btn glass"
@@ -255,6 +256,21 @@
                         </div>
                     </div>
 
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--primary-light);">TEMA
+                            APPLICAZIONE 🌗</label>
+                        <div
+                            style="display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                            <button id="theme-dark" class="btn"
+                                style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: var(--primary); color: white;">🌙
+                                Dark</button>
+                            <button id="theme-light" class="btn"
+                                style="flex: 1; font-size: 0.75rem; padding: 10px; border-radius: 8px; font-weight: 700; transition: all 0.3s; background: transparent; color: var(--text-muted);">☀️
+                                Light</button>
+                        </div>
+                    </div>
+
                     <div style="display: flex; gap: 12px; margin-top: 12px;">
                         <button id="cancel-profile" class="btn"
                             style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted);">Chiudi</button>
@@ -430,7 +446,7 @@
         </div>
     </div>
 
-    <script src="main.js?v=23"></script>
+    <script src="main.js?v=24"></script>
 </body>
 
 </html>

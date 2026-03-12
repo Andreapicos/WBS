@@ -10,7 +10,8 @@ const state = {
     sortOrder: localStorage.getItem('wbs_sortOrder') || 'expiry', // 'expiry' or 'price'
     weeklyConsumed: JSON.parse(localStorage.getItem('wbs_weeklyConsumed')) || [],
     completedRecipes: JSON.parse(localStorage.getItem('wbs_completedRecipes')) || [],
-    totalCompleted: parseInt(localStorage.getItem('wbs_totalCompleted')) || 0
+    totalCompleted: parseInt(localStorage.getItem('wbs_totalCompleted')) || 0,
+    theme: localStorage.getItem('wbs_theme') || 'dark'
 };
 
 // Open Food Facts API
@@ -133,10 +134,56 @@ let lastRecipes = [];
 
 // Initialize
 function init() {
+    applyTheme(state.theme);
     updateUI();
     setupSortButtons();
     setupDietCheckboxes();
     renderBadges();
+    setupThemeSelectors();
+}
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+    }
+    updateThemeUI(theme);
+}
+
+function updateThemeUI(theme) {
+    const darkBtn = document.getElementById('theme-dark');
+    const lightBtn = document.getElementById('theme-light');
+    if (!darkBtn || !lightBtn) return;
+
+    if (theme === 'light') {
+        lightBtn.style.background = 'var(--primary)';
+        lightBtn.style.color = 'white';
+        darkBtn.style.background = 'transparent';
+        darkBtn.style.color = 'var(--text-muted)';
+    } else {
+        darkBtn.style.background = 'var(--primary)';
+        darkBtn.style.color = 'white';
+        lightBtn.style.background = 'transparent';
+        lightBtn.style.color = 'var(--text-muted)';
+    }
+}
+
+function setupThemeSelectors() {
+    const darkBtn = document.getElementById('theme-dark');
+    const lightBtn = document.getElementById('theme-light');
+    if (!darkBtn || !lightBtn) return;
+
+    darkBtn.addEventListener('click', () => {
+        state.theme = 'dark';
+        applyTheme('dark');
+        saveState();
+    });
+    lightBtn.addEventListener('click', () => {
+        state.theme = 'light';
+        applyTheme('light');
+        saveState();
+    });
 }
 
 function saveState() {
@@ -151,6 +198,7 @@ function saveState() {
     localStorage.setItem('wbs_weeklyConsumed', JSON.stringify(state.weeklyConsumed));
     localStorage.setItem('wbs_completedRecipes', JSON.stringify(state.completedRecipes));
     localStorage.setItem('wbs_totalCompleted', state.totalCompleted);
+    localStorage.setItem('wbs_theme', state.theme);
 }
 
 // UI Updaters
