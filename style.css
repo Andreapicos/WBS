@@ -35,17 +35,17 @@
 
 /* Light Theme Variables */
 body.light-theme {
-    --bg-dark: #f1f5f9;
-    /* Ultra Soft Slate 100 */
-    --bg-card: rgba(255, 255, 255, 0.8);
-    /* Glassy White */
-    --overlay-bg: rgba(241, 245, 249, 0.9);
-    /* Soft Opaque Slate */
+    --bg-dark: #e2e8f0;
+    /* Soft Slate 200 - Less bright */
+    --bg-card: rgba(255, 255, 255, 0.7);
+    /* Slightly more transparent for more background bleed */
+    --overlay-bg: rgba(226, 232, 240, 0.95);
+    /* Darker matched overlay */
     --text-main: #0f172a;
     /* Dark Navy */
     --text-muted: #475569;
-    --glass-border: rgba(16, 185, 129, 0.2);
-    --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    --glass-border: rgba(16, 185, 129, 0.25);
+    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.12);
 }
 
 * {
