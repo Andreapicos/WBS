@@ -1,0 +1,17 @@
+{
+  "name": "WBS - Waste Back Saving",
+  "short_name": "WBS",
+  "description": "Trasforma lo spreco alimentare in risparmio reale.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

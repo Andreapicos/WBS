@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="style.css?v=2">
     <!-- QR/Barcode Scanner Library -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- PWA & Mobile Optimization -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="logo.jpg">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('WBS Service Worker Registered'))
+                .catch(err => console.log('SW Registration Failed', err));
+        }
+    </script>
 </head>
 
 <body>
@@ -42,6 +56,42 @@
             <div
                 style="position: absolute; bottom: -20px; right: -20px; font-size: 4rem; opacity: 0.05; transform: rotate(-15deg);">
                 🥗</div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" style="margin-bottom: 24px;">
+            <h3 class="brand-font" style="font-size: 1rem; margin-bottom: 16px; color: var(--primary-light);">Come
+                funziona
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+                <div class="glass"
+                    style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
+                    <div style="font-size: 1.5rem;">1️⃣</div>
+                    <div>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Inserisci il cibo</h4>
+                        <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">Aggiungi i prodotti che hai
+                            comprato.</p>
+                    </div>
+                </div>
+                <div class="glass"
+                    style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
+                    <div style="font-size: 1.5rem;">2️⃣</div>
+                    <div>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Ricevi notifiche</h4>
+                        <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">L'app ti avvisa quando
+                            qualcosa sta per scadere.</p>
+                    </div>
+                </div>
+                <div class="glass"
+                    style="padding: 16px; border-radius: var(--radius-md); display: flex; gap: 16px; align-items: flex-start;">
+                    <div style="font-size: 1.5rem;">3️⃣</div>
+                    <div>
+                        <h4 class="brand-font" style="font-size: 0.9rem; color: white;">Risparmia soldi</h4>
+                        <p class="text-muted" style="font-size: 0.8rem; margin-top: 2px;">Vedi quanto denaro hai salvato
+                            evitando lo spreco.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Dynamic Dashboard -->
@@ -318,6 +368,22 @@
                 <div id="steps-content"></div>
             </div>
         </div>
+        <!-- Founders Section -->
+        <footer
+            style="margin-top: 48px; padding-bottom: 24px; border-top: 1px solid var(--glass-border); text-align: center;">
+            <p class="text-muted"
+                style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; margin-top: 24px;">
+                Founders</p>
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Andrea Miraglia</span>
+                <span style="color: var(--glass-border);">|</span>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Matteo Calia</span>
+                <span style="color: var(--glass-border);">|</span>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Cristian Simonetti</span>
+            </div>
+            <p style="margin-top: 24px; font-size: 0.7rem; color: var(--text-muted); opacity: 0.6;">&copy; 2026 WBS -
+                Waste Back Saving</p>
+        </footer>
     </div>
 
     <style>
@@ -336,7 +402,7 @@
         }
     </style>
 
-    <script src="main.js?v=12"></script>
+    <script src="main.js?v=13"></script>
 </body>
 
 </html>
