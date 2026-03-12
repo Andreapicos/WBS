@@ -246,19 +246,32 @@ function saveState() {
 
 // UI Updaters
 function updateUI() {
-    totalSavingsEl.textContent = `€${state.savings.toFixed(2)}`;
-    savingsDeltaEl.textContent = `+€${(state.inventory.reduce((acc, item) => acc + item.price, 0)).toFixed(2)}`;
-    co2El.textContent = `${parseFloat(state.co2).toFixed(1)} kg`;
-    foodEl.textContent = `${state.foodCount} prodotti`;
-    const completedEl = document.getElementById('completed-recipes');
-    if (completedEl) completedEl.textContent = `${state.totalCompleted} ricette`;
-    userGreetingEl.textContent = `Ciao ${state.userName}, ecco la tua Dashboard`;
+    try {
+        const savingsEl = document.getElementById('total-savings');
+        const deltaEl = document.getElementById('savings-delta');
+        const co2Label = document.getElementById('co2-saved');
+        const foodLabel = document.getElementById('food-saved');
+        const greeting = document.getElementById('user-greeting');
+        const completedEl = document.getElementById('completed-recipes');
 
-    updateWeeklyChart();
-    renderInventory();
-    checkRecipes();
-    renderBadges();
-    saveState();
+        if (savingsEl) savingsEl.textContent = `€${state.savings.toFixed(2)}`;
+        if (deltaEl) {
+            const currentSavings = state.inventory.reduce((acc, item) => acc + (parseFloat(item.price) || 0), 0);
+            deltaEl.textContent = `+€${currentSavings.toFixed(2)}`;
+        }
+        if (co2Label) co2Label.textContent = `${parseFloat(state.co2).toFixed(1)} kg`;
+        if (foodLabel) foodLabel.textContent = `${state.foodCount} prodotti`;
+        if (completedEl) completedEl.textContent = `${state.totalCompleted} ricette`;
+        if (greeting) greeting.textContent = `Ciao ${state.userName}, ecco la tua Dashboard`;
+
+        updateWeeklyChart();
+        renderInventory();
+        checkRecipes();
+        renderBadges();
+        saveState();
+    } catch (e) {
+        console.error("UI Update Error:", e);
+    }
 }
 
 function renderBadges() {
