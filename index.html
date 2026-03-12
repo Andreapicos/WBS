@@ -408,27 +408,29 @@
     </style>
 
     <!-- Badges Modal -->
-    <div id="badges-modal" class="modal-overlay" style="display: none;">
-        <div class="glass modal-content" style="max-width: 500px; width: 95%;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 class="brand-font" style="font-size: 1.3rem;">Bacheca Trofei 🏆</h3>
-                <button id="close-badges" class="btn glass"
-                    style="width: 32px; height: 32px; border-radius: 50%; padding: 0;">✕</button>
+    <div id="badges-modal"
+        style="position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); z-index: 380; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;">
+        <div class="glass animate-fade-in"
+            style="width: 100%; max-width: 500px; padding: 32px; border-radius: var(--radius-lg); border: 2px solid var(--primary); margin: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h3 class="brand-font">Bacheca Trofei 🏆</h3>
+                <button id="close-badges"
+                    style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; line-height: 1;">✕</button>
             </div>
+            <p class="text-muted" style="margin-bottom: 24px;">Visualizza le tue conquiste del risparmio.</p>
 
             <div id="badges-grid"
-                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 4px;">
-                <!-- Badges will be injected here by JS -->
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-height: 50vh; overflow-y: auto; padding-right: 8px; margin-bottom: 20px;">
+                <!-- Badges injected by JS -->
             </div>
 
-            <div
-                style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--glass-border); text-align: center;">
+            <div style="padding-top: 15px; border-top: 1px solid var(--glass-border); text-align: center;">
                 <p class="text-muted" style="font-size: 0.75rem;">Sblocca i badge risparmiando cibo e CO₂!</p>
             </div>
         </div>
     </div>
 
-    <script src="main.js?v=22"></script>
+    <script src="main.js?v=23"></script>
 </body>
 
 </html>
