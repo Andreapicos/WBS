@@ -16,14 +16,16 @@
 
     --bg-dark: #0f172a;
     /* Deep Navy */
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --overlay-bg: rgba(15, 23, 42, 0.85);
+    --bg-card: #1e293b;
+    /* Solid Navy Slate */
+    --overlay-bg: rgba(15, 23, 42, 0.98);
+    /* High Opacity Navy */
 
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
 
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 
     --blur: 16px;
     --radius-lg: 24px;
@@ -34,14 +36,14 @@
 /* Light Theme Variables */
 body.light-theme {
     --bg-dark: #ffffff;
-    --bg-card: rgba(241, 245, 249, 0.85);
-    /* Slate 100 with opacity */
-    --overlay-bg: rgba(255, 255, 255, 0.98);
-    --text-main: #0f172a;
-    /* Slate 900 */
+    --bg-card: #f8fafc;
+    /* Clean Slate 50 */
+    --overlay-bg: rgba(255, 255, 255, 1.0);
+    /* Solid White */
+    --text-main: #020617;
+    /* Almost Black Slate */
     --text-muted: #475569;
-    /* Slate 600 */
-    --glass-border: rgba(16, 185, 129, 0.2);
+    --glass-border: rgba(16, 185, 129, 0.1);
     --glass-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.1);
 }
 
@@ -116,31 +118,33 @@ h3,
 
 .logo-slogan {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.82rem;
+    font-size: 1.1rem;
     font-weight: 900;
-    /* Black/Extra Bold */
-    letter-spacing: 0.05em;
+    /* Extra Bold / Black */
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    display: inline-block;
     background: linear-gradient(135deg, #10b981, #f59e0b);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.2));
-    margin-top: 4px;
+    filter: drop-shadow(0 4px 12px rgba(16, 185, 129, 0.3));
+    margin-top: 8px;
+    line-height: 1.2;
     animation: fadeInSlogan 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInSlogan {
     from {
         opacity: 0;
-        transform: scale(0.95);
-        letter-spacing: 0.2em;
+        transform: translateY(10px) scale(0.98);
+        letter-spacing: 0.3em;
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
-        letter-spacing: 0.05em;
+        transform: translateY(0) scale(1);
+        letter-spacing: 0.08em;
     }
 }
 
