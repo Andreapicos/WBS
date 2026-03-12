@@ -424,7 +424,7 @@ function renderRecipes(aiResponse) {
                                         ${aiRecipe.calorieBand || 'lite'} • ${aiRecipe.calories || 0} kcal
                                     </span>
                                     <span style="font-size: 0.6rem; padding: 2px 6px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border); font-weight: 600;">
-                                        📊 ${aiRecipe.difficulty || 'Media'}
+                                        📊 ${aiRecipe.difficulty || 'Media'} • ⏱️ ${aiRecipe.prepTime || '20 min'}
                                     </span>
                                 </div>
                             </div>
@@ -727,11 +727,13 @@ Rispondi SOLO ed ESCLUSIVAMENTE con un array JSON in questo formato esatto, senz
     "ingredientsUsed": ["ingrediente1", "ingrediente2"],
     "calories": 450,
     "calorieBand": "medium",
-    "difficulty": "Facile"
+    "difficulty": "Facile",
+    "prepTime": "15 min"
   }
 ]
 Nota: calorieBand deve essere "lite" (<400), "medium" (400-700), o "high" (>700).
-La difficulty deve essere uno tra: "Facile", "Media", "Difficile".`;
+La difficulty deve essere uno tra: "Facile", "Media", "Difficile".
+prepTime deve essere una stringa breve (es. "10 min", "1 ora").`;
 
         const data = await callGeminiAPI(prompt, state.geminiKey);
 
