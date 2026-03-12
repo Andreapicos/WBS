@@ -406,17 +406,26 @@ function renderRecipes(aiResponse) {
             for (const aiRecipe of aiResponse) {
                 const isCompleted = state.completedRecipes.includes(aiRecipe.title);
 
-                // Traffic-Light Logic (Unified)
+                // Traffic-Light Logic (Granular)
                 const calorieColor = aiRecipe.calorieBand === 'lite' ? '#10b981' : (aiRecipe.calorieBand === 'medium' ? '#f59e0b' : '#ef4444');
-                const badgeBg = `${calorieColor}15`;
-                const badgeBorder = `${calorieColor}30`;
+
+                // Difficulty Color
+                const diff = (aiRecipe.difficulty || 'Media').toLowerCase();
+                const diffColor = diff.includes('facile') ? '#10b981' : (diff.includes('difficile') ? '#ef4444' : '#f59e0b');
+
+                // PrepTime Color (Simplified parsing)
+                const timeStr = (aiRecipe.prepTime || '20 min').toLowerCase();
+                const timeVal = parseInt(timeStr) || 20;
+                let timeColor = '#f59e0b'; // Default yellow
+                if (timeVal <= 20) timeColor = '#10b981'; // Fast
+                else if (timeVal >= 40) timeColor = '#ef4444'; // Long
 
                 recipesHTML += `
                 <div class="glass" style="padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; border-left: 4px solid ${isCompleted ? '#10b981' : 'transparent'};">
                     <div style="display: flex; gap: 16px;">
                         <div style="width: 72px; height: 72px; border-radius: var(--radius-sm); background: linear-gradient(135deg, #1e293b, #0f172a); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative;">
                             ${aiRecipe.emoji || "🥗"}
-                            ${isCompleted ? '<div style="position: absolute; top: -5px; right: -5px; background: #10b981; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">✓</div>' : ''}
+                            ${isCompleted ? '<div style="position: absolute; top: -5px; right: -5px; background: #10b981; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">✓</div>' : ''}
                         </div>
                         <div style="flex: 1; min-width: 0;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -424,14 +433,14 @@ function renderRecipes(aiResponse) {
                                     ${aiRecipe.title} ${isCompleted ? ' <span style="color: #10b981;">✅</span>' : ''}
                                 </h4>
                                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
-                                    <span style="font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; background: ${badgeBg}; color: ${calorieColor}; border: 1px solid ${badgeBorder}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 4px;">
+                                    <span style="font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; background: ${calorieColor}15; color: ${calorieColor}; border: 1px solid ${calorieColor}30; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 4px;">
                                         🔥 ${aiRecipe.calories || 0} kcal
                                     </span>
                                     <div style="display: flex; gap: 4px;">
-                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: ${badgeBg}; color: ${calorieColor}; border: 1px solid ${badgeBorder}; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: ${diffColor}15; color: ${diffColor}; border: 1px solid ${diffColor}30; font-weight: 600; display: flex; align-items: center; gap: 4px;">
                                             📊 ${aiRecipe.difficulty || 'Media'}
                                         </span>
-                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: ${badgeBg}; color: ${calorieColor}; border: 1px solid ${badgeBorder}; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                        <span style="font-size: 0.6rem; padding: 2px 8px; border-radius: 6px; background: ${timeColor}15; color: ${timeColor}; border: 1px solid ${timeColor}30; font-weight: 600; display: flex; align-items: center; gap: 4px;">
                                             ⏱️ ${aiRecipe.prepTime || '20 min'}
                                         </span>
                                     </div>
