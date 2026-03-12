@@ -1,10 +1,10 @@
-const CACHE_NAME = 'wbs-cache-v2';
+const CACHE_NAME = 'wbs-cache-v3';
 const ASSETS = [
     'index.html',
     'style.css',
     'main.js',
-    'style.css?v=26',
-    'main.js?v=26',
+    'style.css?v=27',
+    'main.js?v=27',
     'logo.jpg'
 ];
 

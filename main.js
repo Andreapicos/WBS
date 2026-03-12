@@ -287,7 +287,7 @@ function updateWeeklyChart() {
     chartEl.innerHTML = last7.map(d => `
         <div class="chart-bar-container" style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; position: relative;">
             <div style="flex: 1; display: flex; align-items: flex-end; width: 100%;">
-                <div class="chart-bar hoverable-bar" data-tooltip="${d.count} prod. | €${d.dailySavings.toFixed(2)}" style="width: 100%; height: ${Math.max((d.count / maxCount) * 48, d.count > 0 ? 8 : 2)}px; background: ${d.isToday ? 'var(--primary)' : d.count > 0 ? 'var(--secondary)' : 'rgba(255,255,255,0.1)'}; border-radius: 4px; transition: height 0.5s ease; cursor: pointer;"></div>
+                <div class="chart-bar hoverable-bar" data-tooltip="${d.count} prod. | €${d.dailySavings.toFixed(2)}" style="width: 100%; height: ${Math.max((d.count / maxCount) * 48, d.count > 0 ? 8 : 2)}px; background: ${d.isToday ? 'var(--primary)' : d.count > 0 ? 'var(--secondary)' : 'var(--glass-border)'}; border-radius: 4px; transition: height 0.5s ease; cursor: pointer;"></div>
             </div>
             <span style="font-size: 0.55rem; color: var(--text-muted); font-weight: ${d.isToday ? '700' : '400'};">${d.label}</span>
         </div>
@@ -521,7 +521,7 @@ function renderRecipes(aiResponse) {
             lastRecipes = aiResponse;
             let recipesHTML = `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 0.7rem; background: var(--primary); color: white; padding: 3px 10px; border-radius: 20px; font-weight: 700;">🤖 AI CHEF</span>
-                <button id="regenerate-btn" onclick="regenerateRecipes()" style="background: rgba(99,102,241,0.15); border: 1px solid var(--primary); color: var(--primary-light); font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.3s;">🔄 Rigenera</button>
+                <button id="regenerate-btn" onclick="regenerateRecipes()" style="background: rgba(16,185,129,0.1); border: 1px solid var(--primary); color: var(--primary-dark); font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.3s;">🔄 Rigenera</button>
             </div><div style="display: grid; gap: 16px;">`;
 
             for (const aiRecipe of aiResponse) {
@@ -550,7 +550,7 @@ function renderRecipes(aiResponse) {
                         </div>
                         <div style="flex: 1; min-width: 0;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                <h4 class="brand-font" style="font-size: 0.95rem; color: white; margin-bottom: 4px;">
+                                <h4 class="brand-font" style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 4px;">
                                     ${aiRecipe.title} ${isCompleted ? ' <span style="color: #10b981;">✅</span>' : ''}
                                 </h4>
                                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
@@ -567,11 +567,11 @@ function renderRecipes(aiResponse) {
                                     </div>
                                 </div>
                             </div>
-                            <p style="font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.4;">${aiRecipe.description}</p>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4;">${aiRecipe.description}</p>
                             ${aiRecipe.ingredientsUsed ? `<p style="font-size: 0.7rem; margin-top: 6px; color: var(--secondary); font-weight: 600;">👨‍🍳 ${aiRecipe.ingredientsUsed.join(', ')}</p>` : ''}
                             <div style="display: flex; gap: 8px; margin-top: 10px;">
-                                <button onclick="showRecipeSteps('${encodeURIComponent(JSON.stringify(aiRecipe))}')" style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: var(--secondary); font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">📖 Passaggi</button>
-                                ${!isCompleted ? `<button onclick="completeRecipe('${aiRecipe.title.replace(/'/g, "\\'")}')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">✅ Ho Fatto</button>` : ''}
+                                <button onclick="showRecipeSteps('${encodeURIComponent(JSON.stringify(aiRecipe))}')" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--primary-dark); font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">📖 Passaggi</button>
+                                ${!isCompleted ? `<button onclick="completeRecipe('${aiRecipe.title.replace(/'/g, "\\'")}')" style="background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-main); font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">✅ Ho Fatto</button>` : ''}
                             </div>
                         </div>
                     </div>
@@ -585,9 +585,9 @@ function renderRecipes(aiResponse) {
             <div style="display: flex; gap: 16px; align-items: flex-start;">
                 <div style="font-size: 2.5rem; flex-shrink: 0;">🤔</div>
                 <div>
-                    <h4 class="brand-font" style="color: white; margin-bottom: 4px;">Abbinamento Bizzarro!</h4>
-                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.65);">I tuoi ingredienti sono un po' troppo creativi da mischiare! Aggiungi altri prodotti compatibili.</p>
-                    <button onclick="regenerateRecipes()" style="margin-top: 10px; background: rgba(99,102,241,0.15); border: 1px solid var(--primary); color: var(--primary-light); font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">🔄 Riprova</button>
+                    <h4 class="brand-font" style="color: var(--text-main); margin-bottom: 4px;">Abbinamento Bizzarro!</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">I tuoi ingredienti sono un po' troppo creativi da mischiare! Aggiungi altri prodotti compatibili.</p>
+                    <button onclick="regenerateRecipes()" style="margin-top: 10px; background: rgba(16,185,129,0.1); border: 1px solid var(--primary); color: var(--primary-dark); font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; cursor: pointer;">🔄 Riprova</button>
                 </div>
             </div>`;
         }
@@ -597,13 +597,13 @@ function renderRecipes(aiResponse) {
         <div style="display: flex; gap: 16px; align-items: flex-start;">
             <div style="font-size: 2.5rem; flex-shrink: 0;">🔍</div>
             <div>
-                <h4 class="brand-font" style="color: white; margin-bottom: 4px;">Chef in Pausa</h4>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.65);">
+                <h4 class="brand-font" style="color: var(--text-main); margin-bottom: 4px;">Chef in Pausa</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">
                     L'AI ha qualche difficoltà, ma puoi trovare una ricetta con un click! ${errorText}
                 </p>
                 <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
                     <a href="${aiResponse?.fallbackUrl || '#'}" target="_blank" class="btn btn-primary" style="text-decoration: none; padding: 6px 14px; font-size: 0.75rem;">Cerca su Google 🚀</a>
-                    <button onclick="regenerateRecipes()" style="background: rgba(99,102,241,0.15); border: 1px solid var(--primary); color: var(--primary-light); font-size: 0.72rem; font-weight: 700; padding: 6px 14px; border-radius: var(--radius-md); cursor: pointer;">🔄 Riprova</button>
+                    <button onclick="regenerateRecipes()" style="background: rgba(16,185,129,0.1); border: 1px solid var(--primary); color: var(--primary-dark); font-size: 0.72rem; font-weight: 700; padding: 6px 14px; border-radius: var(--radius-md); cursor: pointer;">🔄 Riprova</button>
                 </div>
             </div>
         </div>`;
